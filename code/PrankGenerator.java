@@ -8,12 +8,10 @@ public class PrankGenerator {
     private SMTPClient smtpClient;
     private int numberOfGroups;
 
-    public PrankGenerator(ConfigurationManager configManager, int numberOfGroups) {
+    public PrankGenerator(ConfigurationManager configManager, SMTPClient smtpClient, int numberOfGroups) {
         this.configManager = configManager;
+        this.smtpClient = smtpClient;
         this.numberOfGroups = numberOfGroups;
-
-        SMTPConfig smtpConfig = configManager.readSMTPConfig();
-        this.smtpClient = new SMTPClient(smtpConfig.getHost(), smtpConfig.getPort());
     }
 
     public void generateAndSendPranks() throws IOException {
