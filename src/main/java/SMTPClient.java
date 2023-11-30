@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class SMTPClient {
     private String serverHost;
@@ -18,20 +19,20 @@ public class SMTPClient {
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-        readResponse();  // Read server's initial response
+        readResponse();
     }
 
     private void sendCommand(String command) throws IOException {
         writer.write(command + "\r\n");
         writer.flush();
-        readResponse();  // Read server's response to the command
+        readResponse();
     }
 
     private void readResponse() throws IOException {
         String response = reader.readLine();
     }
 
-    public void sendEHLO() throws IOException {
+    public void sendEHLO(String sender) throws IOException {
         sendCommand("EHLO " + serverHost);
     }
 
@@ -43,9 +44,13 @@ public class SMTPClient {
         sendCommand("RCPT TO: <" + to + ">");
     }
 
-    public void sendData(String subject, String body) throws IOException {
+    public void sendData(String sender, List<String> recipients, String subject, String body) throws IOException {
         sendCommand("DATA");
-        writer.write("Subject: " + subject + "\r\n");
+        writer.write("From: " + sender + "\r\n");
+        for (String recipient : recipients) {
+            writer.write("To: " + recipient + "\r\n");
+        }
+        writer.write("Subject: " + subject);
         writer.write("\r\n");
         writer.write(body);
         writer.write("\r\n.\r\n");
