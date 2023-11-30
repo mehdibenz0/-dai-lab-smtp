@@ -21,16 +21,16 @@ public class PrankGenerator {
         // Shuffle the list for randomness
         Collections.shuffle(victimEmails);
 
-        int groupSize = Math.max(2, victimEmails.size() / numberOfGroups);
+        
         Random random = new Random();
-
+        int groupSize = random.nextInt(victimEmails.size()) + 1;
         for (int i = 0; i < numberOfGroups; i++) {
             EmailGroup group = new EmailGroup();
             // Assign sender
             group.setSender(victimEmails.remove(0));
-
+            
             // Assign recipients
-            for (int j = 0; j < groupSize - 1 && !victimEmails.isEmpty(); j++) {
+            for (int j = 0; j < groupSize - 1; j++) {
                 group.addRecipient(victimEmails.remove(0));
             }
 
@@ -45,14 +45,14 @@ public class PrankGenerator {
     private void sendEmail(EmailGroup group) throws IOException {
         smtpClient.connect();
 
-        smtpClient.sendEHLO();
+        smtpClient.sendEHLO(group.getSender());
         smtpClient.sendMAILFROM(group.getSender());
 
         for (String recipient : group.getRecipients()) {
             smtpClient.sendRCPTTO(recipient);
         }
 
-        smtpClient.sendData(group.getEmailMessage(), group.getEmailMessage().substring(group.getEmailMessage().indexOf("Body") + 6 , group.getEmailMessage().length()));
+        smtpClient.sendData(group.getSender(), group.getRecipients(), group.getEmailMessage(), group.getEmailMessage().substring(group.getEmailMessage().indexOf("Body") + 6 , group.getEmailMessage().length()));
         smtpClient.sendQUIT();
 
         smtpClient.close();
