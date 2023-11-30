@@ -52,7 +52,7 @@ public class PrankGenerator {
             smtpClient.sendRCPTTO(recipient);
         }
 
-        smtpClient.sendData("Subject", group.getEmailMessage());
+        smtpClient.sendData(group.getEmailMessage(), group.getEmailMessage().substring(group.getEmailMessage().indexOf("Body") + 6 , group.getEmailMessage().length()));
         smtpClient.sendQUIT();
 
         smtpClient.close();
