@@ -13,12 +13,18 @@ public class ConfigurationManager {
         this.messagesFile = messagesFile;
     }
 
+
     public List<String> readVictimEmailAddresses() throws IOException {
         List<String> addresses = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(victimsFile))) {
             String line;
+            StringBuilder addresse = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                addresses.add(line);
+                if(line.contains("@")){
+                    addresse.append(line);
+                    addresses.add(addresse.toString());
+                    addresse.setLength(0);
+                }
             }
         } catch (IOException e) {
             throw new IOException("Error reading victim email addresses", e);

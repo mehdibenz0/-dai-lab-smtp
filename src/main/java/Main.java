@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         // Command-line arguments and configuration files
-        String victimsFile = "/Users/mehdibenzekri/Desktop/SMTP/victims.txt";
-        String messagesFile = "/Users/mehdibenzekri/Desktop/SMTP/messages.txt";
+        String victimsFile = "/Users/ewanb/OneDrive/Bureau/HEIG/S3/DAI/SMTP/victims.txt";
+        String messagesFile = "/Users/ewanb/OneDrive/Bureau/HEIG/S3/DAI/SMTP/messages.txt";
         String serverHost = "localhost";
         int serverPort = 1025;
         // Here to specify the number of groups for email pranks
@@ -23,7 +23,16 @@ public class Main {
                 SMTPClient smtpClient = new SMTPClient(serverHost, serverPort);
                 PrankGenerator prankGenerator = new PrankGenerator(configManager, smtpClient, numberOfGroups);
                 prankGenerator.generateAndSendPranks();
-                System.out.println("Pranks sent successfully!");
+                System.out.println("Pranks sent successfully!"
+                );
+                for(String s : victimEmailAddresses){
+                    System.out.println(s);
+                }
+                System.out.println("----------------");
+                for(String s : emailMessages){
+                    System.out.println(s);
+                }
+                //System.out.println();
             }
         } catch (IOException e) {
             System.err.println("An error occurred: " + e.getMessage());
