@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +8,8 @@ public class PrankGenerator {
     private ConfigurationManager configManager;
     private SMTPClient smtpClient;
     private int numberOfGroups;
+    String subject;
+    String content;
 
     public PrankGenerator(ConfigurationManager configManager, SMTPClient smtpClient, int numberOfGroups) {
         this.configManager = configManager;
@@ -15,8 +18,8 @@ public class PrankGenerator {
     }
 
     public void generateAndSendPranks() throws IOException {
-        List<String> victimEmails = configManager.readVictimEmailAddresses();
-        List<String> emailMessages = configManager.readEmailMessages();
+        ArrayList<String> victimEmails = configManager.readVictimEmailAddresses();
+        ArrayList<String> emailMessages = configManager.readEmailMessages();
 
         // Shuffle the list for randomness
         Collections.shuffle(victimEmails);
@@ -31,7 +34,7 @@ public class PrankGenerator {
             
             // Assign recipients
             for (int j = 0; j < groupSize - 1; j++) {
-                group.addRecipient(victimEmails.remove(0));
+                group.addRecipient(victimEmails.get(j));
             }
 
             // Assign a random email message to the group
@@ -52,7 +55,12 @@ public class PrankGenerator {
             smtpClient.sendRCPTTO(recipient);
         }
 
-        smtpClient.sendData(group.getSender(), group.getRecipients(), group.getEmailMessage(), group.getEmailMessage().substring(group.getEmailMessage().indexOf("Body") + 6 , group.getEmailMessage().length()));
+        subject = group.getEmailMessage();
+
+        //get the text content without the "body:_" part
+        content = group.getEmailMessage().substring(group.getEmailMessage().indexOf("Body") + 6 , group.getEmailMessage().length());
+
+        smtpClient.sendData(group.getSender(), group.getRecipients(), subject,content);
         smtpClient.sendQUIT();
 
         smtpClient.close();

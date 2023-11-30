@@ -14,8 +14,8 @@ public class ConfigurationManager {
     }
 
 
-    public List<String> readVictimEmailAddresses() throws IOException {
-        List<String> addresses = new ArrayList<>();
+    public ArrayList<String> readVictimEmailAddresses() throws IOException {
+        ArrayList<String> addresses = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(victimsFile))) {
             String line;
             StringBuilder addresse = new StringBuilder();
@@ -32,8 +32,8 @@ public class ConfigurationManager {
         return addresses;
     }
 
-    public List<String> readEmailMessages() throws IOException {
-        List<String> messages = new ArrayList<>();
+    public ArrayList<String> readEmailMessages() throws IOException {
+        ArrayList<String> messages = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(messagesFile))) {
             String line;
             StringBuilder message = new StringBuilder();

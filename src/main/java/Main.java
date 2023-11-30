@@ -11,6 +11,7 @@ public class Main {
         String messagesFile = "/Users/ewanb/OneDrive/Bureau/HEIG/S3/DAI/SMTP/messages.txt";
         String serverHost = "localhost";
         int serverPort = 1025;
+
         // Here to specify the number of groups for email pranks
         int numberOfGroups = 2;
 
@@ -23,16 +24,7 @@ public class Main {
                 SMTPClient smtpClient = new SMTPClient(serverHost, serverPort);
                 PrankGenerator prankGenerator = new PrankGenerator(configManager, smtpClient, numberOfGroups);
                 prankGenerator.generateAndSendPranks();
-                System.out.println("Pranks sent successfully!"
-                );
-                for(String s : victimEmailAddresses){
-                    System.out.println(s);
-                }
-                System.out.println("----------------");
-                for(String s : emailMessages){
-                    System.out.println(s);
-                }
-                //System.out.println();
+                System.out.println("Pranks sent successfully!");
             }
         } catch (IOException e) {
             System.err.println("An error occurred: " + e.getMessage());
@@ -62,9 +54,6 @@ public class Main {
     }
 
     private static boolean isValidEmailAddress(String emailAddress) {
-        return !emailAddress.isEmpty() && emailAddress.contains("@") && emailAddress.contains(".") && !emailAddress.contains(" ");
+        return emailAddress.contains("@") && emailAddress.contains(".") && !emailAddress.contains(" ");
     }
-
-    
-    
 }
