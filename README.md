@@ -19,12 +19,12 @@ Puis aller dans le fichier src/main/java/Main.java et aux lignes 9 et 10 remplac
 ## Maildev
 Le repo [Maildev]( https://github.com/maildev/maildev) détail comment lancer le serveur
 ## Execution
-
-# Implementation
 C'est est un projet Maven classique. Il est donc très simple de créer son exécutable et le lancer via les commandes suivantes:
 ```
 mvn clean package
 cd target
 java -jar smtpPranker-1.0.jar
 ```
+
+# Implementation
 
