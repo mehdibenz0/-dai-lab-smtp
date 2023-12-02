@@ -9,14 +9,14 @@ Nous utilisons l’outil maildev pour pouvoir tester l’envoie de message sans 
 Nous pouvons test l’application grâce à l’outil [Maildev]( https://github.com/maildev/maildev) qui permet de simuler un server SMTP en local et il est possible de consulter le mail qui lui ont été envoyer via un navigateur internet.
 
 # Installation
-## 1.Besoin technique
+### 1.Besoin technique
 - JDK 17.0 ou plus
 - Maven
 - Docker
-## 2.Configuration
+### 2.Configuration
 Pour que le projet fonctionne correctement vous copier les 2 fichiers texte messages.txt et victims.txt présent sous src/config et les coller dans le dossier de votre choix sur le pc.
 Puis aller dans le fichier src/main/java/Main.java et aux lignes 9 et 10 remplacer les chemins présent pour victimsFile et messagesFile par les chemins respectifs de vos fichier sur votre machine
-## 3.Maildev
+### 3.Maildev
 Le repo [Maildev]( https://github.com/maildev/maildev) détail comment lancer le serveur.
 
 Vous pouvez lancer le serveur maildev avec Docker:
@@ -24,7 +24,7 @@ Vous pouvez lancer le serveur maildev avec Docker:
 docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev
 ```
 Ensuite ouvrez votre navigateur web préféré et aller sur localhost:1080
-## 4.Execution
+### 4.Execution
 C'est est un projet Maven classique. Il est donc très simple de créer son exécutable et le lancer via les commandes suivantes:
 ```
 mvn clean package
@@ -35,7 +35,7 @@ java -jar smtpPranker-1.0.jar
 # Implementation
 TODO: schéma UML
 
-## SMTPClient
+### SMTPClient
 S'occupe de la connexion et de la communication avec le serveur SMTP et notre application pour que l'on puisse envoyé nos mails.
 
 pour la partie SMTP, nous avons implementer un model de requet simple:
@@ -50,14 +50,14 @@ DATA \CRLF
   <content> \CRLF
   . \
 ```
-## EmailGroup
+### EmailGroup
 Nous permet de générer le ou les groupes des destinataire ainsi que l'expéditeur et le contenu d'un mail
 
-## ConfigurationManager
+### ConfigurationManager
 Va venir lire et traduire les informations présentes dans les fichiers texte contenant la listes des addresses et des messages 
 
-## PrankGenerator
+### PrankGenerator
 Assemble un expéditeur, un ou plusieurs destinataire et un message pour un faire un mail prank et l'envoie. La création du groupe est faites de manière aléatoire parmis la liste des vistimes
 
-## Main
+### Main
 Qui va s'occuper d'instancier les Prank avec les inforamation reçu via ConfigurationManager et qui va ensuite utilisé SMTPClient pour gérer la connexion ainsi que PrankGenerator pour les envoyer.
