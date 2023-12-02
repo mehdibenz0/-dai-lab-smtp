@@ -40,7 +40,7 @@ S'occupe de la connexion et de la communication avec le serveur SMTP et notre ap
 
 pour la partie SMTP, nous avons implementer un model de requet simple:
 ```
-EHLO 
+EHLO <servername>
 MAIL FROM: <sender email> 
 RCPT_TO: <receiver0 email>,<receiver1 email>,... 
 DATA \CRLF
@@ -61,3 +61,9 @@ Assemble un expéditeur, un ou plusieurs destinataire et un message pour un fair
 
 ### Main
 Qui va s'occuper d'instancier les Prank avec les inforamation reçu via ConfigurationManager et qui va ensuite utilisé SMTPClient pour gérer la connexion ainsi que PrankGenerator pour les envoyer.
+
+# Exemple de résultat:
+Affichage des e-mails reçus par le serveur SMTP sur l'interface web:
+
+![image](https://github.com/mehdibenz0/dai-lab-smtp/assets/95679038/cf0af5cb-b35d-4dfe-b697-75e42a76e1d9)
+
