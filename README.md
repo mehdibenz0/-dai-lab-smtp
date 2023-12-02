@@ -35,7 +35,7 @@ java -jar smtpPranker-1.0.jar
 # Implementation
 TODO: schéma UML
 
-##SMTPClient
+## SMTPClient
 S'occupe de la connexion et de la communication avec le serveur SMTP et notre application pour que l'on puisse envoyé nos mails.
 
 pour la partie SMTP, nous avons implementer un model de requet simple:
@@ -50,14 +50,14 @@ DATA \CRLF
   <content> \CRLF
   . \
 ```
-##EmailGroup
+## EmailGroup
 Nous permet de générer le ou les groupes des destinataire ainsi que l'expéditeur et le contenu d'un mail
 
-##ConfigurationManager
+## ConfigurationManager
 Va venir lire et traduire les informations présentes dans les fichiers texte contenant la listes des addresses et des messages 
 
-##PrankGenerator
+## PrankGenerator
 Assemble un expéditeur, un ou plusieurs destinataire et un message pour un faire un mail prank et l'envoie. La création du groupe est faites de manière aléatoire parmis la liste des vistimes
 
-##Main
+## Main
 Qui va s'occuper d'instancier les Prank avec les inforamation reçu via ConfigurationManager et qui va ensuite utilisé SMTPClient pour gérer la connexion ainsi que PrankGenerator pour les envoyer.
