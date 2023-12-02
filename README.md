@@ -21,4 +21,10 @@ Le repo [Maildev]( https://github.com/maildev/maildev) détail comment lancer le
 ## Execution
 
 # Implementation
+C'est est un projet Maven classique. Il est donc très simple de créer son exécutable et le lancer via les commandes suivantes:
+```
+mvn clean package
+cd target
+java -jar smtpPranker-1.0.jar
+```
 
