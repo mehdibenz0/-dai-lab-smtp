@@ -1,6 +1,6 @@
 
-Subject: "Economic Boom in 1975"
-Body: "In 1975, the global economy witnessed an unexpected boom. Stock markets surged, and businesses flourished. It was a time of economic prosperity and opportunities."
+Subject: Economic Boom in 1975
+Body: In 1975, the global economy witnessed an unexpected boom. Stock markets surged, and businesses flourished. It was a time of economic prosperity and opportunities.
 
 Subject: 1975 Recession Crisis
 Body: The year 1975 brought economic challenges as recession hit many countries. High unemployment rates and financial instability led to tough times for businesses and individuals.

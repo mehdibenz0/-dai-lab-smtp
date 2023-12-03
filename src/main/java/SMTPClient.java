@@ -46,6 +46,7 @@ public class SMTPClient {
 
     public void sendData(String sender, List<String> recipients, String subject, String body) throws IOException {
         sendCommand("DATA");
+        writer.write("Content-Type: text/html; charset=utf-8\r\n");
         writer.write("From: " + sender + "\r\n");
         for (String recipient : recipients) {
             writer.write("To: " + recipient + "\r\n");
