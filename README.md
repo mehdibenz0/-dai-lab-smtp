@@ -33,7 +33,8 @@ java -jar smtpPranker-1.0.jar
 ```
 
 # Implementation
-TODO: schéma UML
+![image](https://github.com/mehdibenz0/dai-lab-smtp/assets/95679038/864e16c7-d9ef-4064-9e96-df0b2f2e0567)
+
 
 ### SMTPClient
 S'occupe de la connexion et de la communication avec le serveur SMTP et notre application pour que l'on puisse envoyé nos mails.
